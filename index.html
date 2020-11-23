@@ -1,0 +1,50 @@
+<style type="text/css">
+    button{width:60; height:60}
+    .karak{
+        position:absolute;
+        width: 200px;
+        height: 200px;
+        top:120px;
+        left:80px;
+    }
+    </style>
+    <script>
+    n=1;
+    aksi="idle"
+    set="idle"
+    topposition= 120
+    leftposition = 80
+    function muat(){
+    n=n+1;
+    if(n>30 && set === "Jump"){aksi=set; n=1; set="idle"; karakter.style= "top: " + 120 +"px"; }
+    if(n>16  && set === "idle"){aksi=set; n=1; set="idle"; }
+    if(n>20  && set === "Walk"){aksi=set; n=1; set="idle"; }
+    karakter.src="idle"+"/"+set+n+".png";
+
+    if(set == "Jump"){
+      karakter.style= "top: " + (topposition - n) +"px";
+    }
+    if(set == "Walk"){
+      karakter.style= "left: " + (leftposition + n) +"px";
+    }
+    if(aksi=="jalan"){
+    bg.src="bg/"+xx+n+".jpg";
+    }
+    ot.innerHTML=set+n;
+    }
+    setInterval('muat();',30)
+    </script>
+    <a id="ot"></a><br>
+    <img id="bg" src="bg/bg.jpg" style="position:absolute"/>
+    <img id="karakter" src="idle/idle1.png" class="karak"/>
+    <br><br>
+    <div style="position:absolute; top:450">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button onclick="set='Jump'; ">^</button>
+
+    <br>
+    <button onclick="set='jalan'; "> < </button>
+    <button onclick="set='runduk'; ">v</button>
+    <button onclick="set='Walk'; ">></button>
+
+
+    </div>
